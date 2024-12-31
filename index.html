@@ -15,7 +15,6 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
-
         .progress {
             height: 8px;
             background-color: #3b82f6;
@@ -23,11 +22,9 @@
             border-radius: 5px;
             transition: width 0.4s ease;
         }
-
         .hidden {
             display: none;
         }
-
         .navigation-button {
             display: inline-block;
             margin: 5px;
@@ -36,18 +33,15 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         .next-button {
             background-color: #3b82f6;
             color: white;
         }
-
         .back-button {
             background-color: #a0aec0;
             color: white;
             float: right;
         }
-
         .whatsapp-button {
             position: fixed;
             bottom: 20px;
@@ -61,7 +55,6 @@
             cursor: pointer;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
-
         .video-background {
             position: fixed;
             top: -1.7cm;
@@ -71,13 +64,11 @@
             z-index: -1;
             pointer-events: none;
         }
-
         .video-background iframe {
             width: 120%;
             height: 120%;
             object-fit: cover;
         }
-
         .content-container {
             position: relative;
             z-index: 1;
@@ -110,9 +101,10 @@
             <p class="text-gray-700 mb-4">Obtenez votre devis en 5 minutes avec notre application unique en Suisse.</p>
             <p class="text-gray-700 mb-6">Répondez à 22 questions et découvrez votre prix instantanément.</p>
             <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="showPage('page2')">Lancez votre devis maintenant</button>
-            <p class="text-green-500 <p class="mt-4">138 Devis Réalisés la semaine dernière</p>
+            <p class="text-green-500 mt-4">138 Devis Réalisés la semaine dernière</p>
         </div>
     </div>
+
     <!-- Page 2 : Formulaire de Devis -->
     <div id="page2" class="max-w-xl mx-auto mt-10 bg-white bg-opacity-80 shadow-md rounded-lg overflow-hidden hidden">
         <div class="p-6">
@@ -131,7 +123,7 @@
                 </div>
                 <div class="form-group mb-4 hidden" data-question="2">
                     <label for="email" class="block text-gray-700">2. E-mail :</label>
-                    <input type="email" id="exemple@exemple.com" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre email" required>
+                    <input type="email" id="email" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre email" required>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
                         <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
@@ -139,7 +131,7 @@
                 </div>
                 <div class="form-group mb-4 hidden" data-question="3">
                     <label for="telephone" class="block text-gray-700">3. Numéro de Téléphone :</label>
-                    <input type="tel" id="0781234567" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre numéro de téléphone" required>
+                    <input type="tel" id="telephone" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre numéro de téléphone" required>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
                         <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
@@ -147,11 +139,10 @@
                 </div>
                 <div class="form-group mb-4 hidden" data-question="4">
                     <label for="adresse_actuelle" class="block text-gray-700">4. Adresse Actuelle :</label>
-                    <input type="text" id="Avenue du Chateau 3, 1400 Yverdon/ 2ieme étage" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre adresse actuelle" required>
+                    <input type="text" id="adresse_actuelle" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre adresse actuelle" required>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
                         <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-
                     </div>
                 </div>
                 <div class="form-group mb-4 hidden" data-question="5">
@@ -412,11 +403,10 @@
     </div>
 
     <!-- Page 3 : Résultat du Devis et Remerciements -->
-<div id="page3" class="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg overflow-hidden hidden">
+    <div id="page3" class="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg overflow-hidden hidden">
         <div class="p-6 text-center">
             <h1 class="text-2xl font-bold text-blue-600 mb-6">Votre Déménagement Pour Seulement <span id="prixDevis"></span> CHF</h1>
             <p class="text-gray-700 mb-6">Nous sommes impatients de vous rencontrer et de vous offrir le meilleur service possible.</p>
-            <p>
             <button class="bg-green-500 text-white py-2 px-4 mb-4 rounded-md hover:bg-green-600" onclick="markContacted()">Être Contacté par un agent de L&J Déménagement</button>
             <div class="mb-4">
                 <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.wordpress.com/'">Site Web</button>
@@ -497,10 +487,9 @@
             const acces = document.getElementById('acces').value;
             const ascenseur = document.getElementById('ascenseur').value;
             const monte_charge = document.getElementById('monte_charge').value;
-            
 
-            if (formule === 'economique') cost += 00;
-            else if (formule === 'premium') cost += 00;
+            if (formule === 'economique') cost += 0;
+            else if (formule === 'premium') cost += 0;
             else if (formule === 'prestige') cost += cost * 0.6;
 
             if (pieces === 'studio') cost += 450;
@@ -530,7 +519,7 @@
             else if (nettoyage === '270_289') cost += 2400;
             else if (nettoyage === '290_309') cost += 2600;
 
-            if (distance === '0_10') cost += 00;
+            if (distance === '0_10') cost += 0;
             else if (distance === '11_30') cost += 70;
             else if (distance === '31_60') cost += 90;
             else if (distance === '61_90') cost += 110;
@@ -564,8 +553,8 @@
             if (ascenseur === 'oui') cost += 9;
             else if (ascenseur === 'non') cost += cost * 0.1;
 
-            if (monte_charge) === 'oui' cost += 700;
-            else if (monte_charge) === 'non' cost += 0;
+            if (monte_charge === 'oui') cost += 700;
+            else if (monte_charge === 'non') cost += 0;
 
             document.getElementById('prixDevis').innerText = cost; // Affiche le coût dans l'élément prixDevis
             return cost;
@@ -586,9 +575,9 @@
                 Distance: document.getElementById('distance').value,
                 Lit_adulte: document.getElementById('lit_adulte').value,
                 Lit_enfant: document.getElementById('lit_enfant').value,
+                Meubles: document.getElementById('meubles').value,
                 Canape: document.getElementById('canape').value,
                 Frigo: document.getElementById('frigo').value,
-                Meubles: document.getElementById('meubles').value,
                 Balcon: document.getElementById('balcon').value,
                 Cave: document.getElementById('cave').value,
                 Acces: document.getElementById('acces').value,
@@ -598,13 +587,38 @@
                 Estimated_cost: cost
             };
 
+            const message = `
+                Nom et Prénom: ${formDetails.Nom_prenom}
+                Email: ${formDetails.Email}
+                Téléphone: ${formDetails.Telephone}
+                Adresse Actuelle: ${formDetails.Adresse_actuelle}
+                Adresse Future: ${formDetails.Adresse_future}
+                Statut: ${formDetails.Statut}
+                Formule: ${formDetails.Formule}
+                Objet: ${formDetails.Objet}
+                Pièces: ${formDetails.Pieces}
+                Nettoyage: ${formDetails.Nettoyage}
+                Distance: ${formDetails.Distance}
+                Lits Adultes: ${formDetails.Lit_adulte}
+                Lits Enfants: ${formDetails.Lit_enfant}
+                Meubles: ${formDetails.Meubles}
+                Canapé: ${formDetails.Canape}
+                Frigo: ${formDetails.Frigo}
+                Balcon: ${formDetails.Balcon}
+                Cave: ${formDetails.Cave}
+                Accès: ${formDetails.Acces}
+                Ascenseur: ${formDetails.Ascenseur}
+                Monte Charge: ${formDetails.Monte_charge}
+                Commentaires: ${formDetails.Commentaires}
+                Coût Estimé: ${formDetails.Estimated_cost} CHF
+            `;
+
             emailjs.send("service_wd4pvu4", "template_e3f3f4p", {
-                To_email: formDetails.Email,
-                From_name: "L&J Déménagement",
-                Reply_to: formDetails.Email,
-                Cc: "ljdemenagement@etik.com",
-                Subject: "Demande de devis de L&J Déménagement",
-                Message: `Merci pour votre demande de devis ! Voici un récapitulatif de vos réponses : ${JSON.stringify(formDetails, null, 2)}`
+                to_email: formDetails.Email,
+                from_name: "L&J Déménagement",
+                reply_to: formDetails.Email,
+                subject: "Demande de devis de L&J Déménagement",
+                message: message
             }).then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
                 showConfirmationMessage();
@@ -628,10 +642,10 @@
             const email = document.getElementById('email').value;
 
             emailjs.send("service_wd4pvu4", "template_e3f3f4p", {
-                Reply_to: email,
-                From_name: "L&J Déménagement",
-                Subject: "Demande de contact",
-                Message: "Vous serez contacté par un agent de L&J Déménagement."
+                reply_to: email,
+                from_name: "L&J Déménagement",
+                subject: "Demande de contact",
+                message: "Vous serez contacté par un agent de L&J Déménagement."
             }).then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
                 alert('Votre demande a été envoyée avec succès !');
@@ -659,4 +673,5 @@
         document.body.appendChild(whatsappButton);
     </script>
 </body>
+
 </html>
