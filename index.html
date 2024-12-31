@@ -106,7 +106,7 @@
     <!-- Page 1 : Bienvenue -->
     <div id="page1" class="max-w-xl mx-auto mt-10 bg-white bg-opacity-70 shadow-md rounded-lg overflow-hidden">
         <div class="p-6 text-center">
-            <h1 class="text-2xl font-bold text-blue-600 mb-6">Rapide, Simple, Transparent Avec L&J Déménagement</h1>
+            <h1 class="text-2xl font-bold text-blue-600 mb-6">Rapide, Simple et Transparent Avec L&J Déménagement</h1>
             <p class="text-gray-700 mb-4">Obtenez votre devis en 5 minutes avec notre application unique en Suisse.</p>
             <p class="text-gray-700 mb-6">Répondez à 22 questions et découvrez votre prix instantanément.</p>
             <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="showPage('page2')">Lancez votre devis maintenant</button>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="form-group mb-4 hidden" data-question="2">
                     <label for="email" class="block text-gray-700">2. E-mail :</label>
-                    <input type="email" id="email" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre email" required>
+                    <input type="email" id="exemple@exemple.com" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre email" required>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
                         <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="form-group mb-4 hidden" data-question="3">
                     <label for="telephone" class="block text-gray-700">3. Numéro de Téléphone :</label>
-                    <input type="tel" id="telephone" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre numéro de téléphone" required>
+                    <input type="tel" id="0781234567" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre numéro de téléphone" required>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
                         <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
@@ -147,7 +147,7 @@
                 </div>
                 <div class="form-group mb-4 hidden" data-question="4">
                     <label for="adresse_actuelle" class="block text-gray-700">4. Adresse Actuelle :</label>
-                    <input type="text" id="adresse_actuelle" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre adresse actuelle" required>
+                    <input type="text" id="Avenue du Chateau 3, 1400 Yverdon/ 2ieme étage" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre adresse actuelle" required>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
                         <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
@@ -179,9 +179,9 @@
                     <label for="formule" class="block text-gray-700">7. Choisissez la formule qui vous correspond pour votre Déménagement :</label>
                     <select id="formule" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                         <option value="" disabled selected>Choisissez…</option>
-                        <option value="economique">Formule Économique</option>
-                        <option value="premium">Formule Premium</option>
-                        <option value="prestige">Formule Prestige</option>
+                        <option value="economique">Formule Économique : (chargement et déchargement, le transport de vos biens de l'adresse actuelle à votre future adresse)</option>
+                        <option value="premium">Formule Premium : (Formule Economique + Montage et Démontage des meubles).</option>
+                        <option value="prestige">Formule Prestige : ( Formule Prémium + Mise en cartons de vos affaires et nettoyage fin de bail de l’appartement sortant)</option>
                     </select>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
@@ -293,9 +293,10 @@
                     </div>
                 </div>
                 <div class="form-group mb-4 hidden" data-question="14">
-                    <label for="meubles" class="block text-gray-700">14. Nombre de Meubles :</label>
+                    <label for="meubles" class="block text-gray-700">14. Nombre de Meubles à Démonter et Remonter :</label>
                     <select id="meubles" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                         <option value="" disabled selected>Choisissez…</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -311,9 +312,10 @@
                     <select id="canape" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                         <option value="" disabled selected>Choisissez…</option>
                         <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        <option value="1">Canapé Simple moins de 3 Places</option>
+                        <option value="2">Canapé d'angle</option>
+                        <option value="3">Set de canapés 3+2+1 Places</option>
+                        <option value="4">Autre</option>
                     </select>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
@@ -375,6 +377,7 @@
                         <option value="" disabled selected>Choisissez…</option>
                         <option value="oui">Oui</option>
                         <option value="non">Non</option>
+                        <option value="oui">Rez-de-chaussée</option>
                     </select>
                     <div class="flex justify-between">
                         <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
@@ -382,7 +385,7 @@
                     </div>
                 </div>
                 <div class="form-group mb-4 hidden" data-question="21">
-                    <label for="monte_charge" class="block text-gray-700">21. Usage de Monte-charge :</label>
+                    <label for="monte_charge" class="block text-gray-700">21. Usage obligatoire d'un Monte-Meuble (Seulement pour les appartements avec des accès difficiles et sans possibilitées d'utiliser les escaliers ou ascenseur) :</label>
                     <select id="monte_charge" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                         <option value="" disabled selected>Choisissez…</option>
                         <option value="oui">Oui</option>
@@ -413,7 +416,7 @@
         <div class="p-6 text-center">
             <h1 class="text-2xl font-bold text-blue-600 mb-6">Votre Déménagement Pour Seulement <span id="prixDevis"></span> CHF</h1>
             <p class="text-gray-700 mb-6">Nous sommes impatients de vous rencontrer et de vous offrir le meilleur service possible.</p>
-            <p>class="Votre Déménagement Pour Seulement <span id="prixDevis"></span> CHF</p>
+            <p>
             <button class="bg-green-500 text-white py-2 px-4 mb-4 rounded-md hover:bg-green-600" onclick="markContacted()">Être Contacté par un agent de L&J Déménagement</button>
             <div class="mb-4">
                 <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.wordpress.com/'">Site Web</button>
@@ -493,10 +496,12 @@
             const cave = document.getElementById('cave').value;
             const acces = document.getElementById('acces').value;
             const ascenseur = document.getElementById('ascenseur').value;
+            const monte_charge = document.getElementById('monte_charge').value;
+            
 
-            if (formule === 'economique') cost += 300;
-            else if (formule === 'premium') cost += 500;
-            else if (formule === 'prestige') cost += 700;
+            if (formule === 'economique') cost += 00;
+            else if (formule === 'premium') cost += 00;
+            else if (formule === 'prestige') cost += cost * 0.6;
 
             if (pieces === 'studio') cost += 450;
             else if (pieces === 'une_piece') cost += 600;
@@ -504,7 +509,7 @@
             else if (pieces === 'trois_pieces') cost += 1250;
             else if (pieces === 'quatre_pieces') cost += 1550;
             else if (pieces === 'cinq_pieces') cost += 1850;
-            else if (pieces === 'six_pieces') cost += 2000;
+            else if (pieces === 'six_pieces') cost += 2100;
             else if (pieces === 'sept_pieces') cost += 2350;
             else if (pieces === 'huit_pieces') cost += 2600;
             else if (pieces === 'neuf_pieces') cost += 2850;
@@ -525,39 +530,42 @@
             else if (nettoyage === '270_289') cost += 2400;
             else if (nettoyage === '290_309') cost += 2600;
 
-            if (distance === '0_10') cost += 50;
+            if (distance === '0_10') cost += 00;
             else if (distance === '11_30') cost += 70;
             else if (distance === '31_60') cost += 90;
             else if (distance === '61_90') cost += 110;
             else if (distance === '91_120') cost += 140;
 
-            if (lit_adulte === '1') cost += 150;
-            else if (lit_adulte === '2') cost += 200;
-            else if (lit_adulte === '3') cost += 300;
+            if (lit_adulte === '1') cost += 0;
+            else if (lit_adulte === '2') cost += 100;
+            else if (lit_adulte === '3') cost += 150;
 
-            if (lit_enfant === '1') cost += 100;
-            else if (lit_enfant === '2') cost += 150;
-            else if (lit_enfant === '3') cost += 200;
-            else if (lit_enfant === '4') cost += 250;
+            if (lit_enfant === '1') cost += 0;
+            else if (lit_enfant === '2') cost += 50;
+            else if (lit_enfant === '3') cost += 100;
+            else if (lit_enfant === '4') cost += 150;
 
-            if (meubles === '1') cost += 200;
-            else if (meubles === '2') cost += 350;
-            else if (meubles === '3') cost += 500;
-            else if (meubles === '4') cost += 600;
+            if (meubles === '1') cost += 150;
+            else if (meubles === '2') cost += 300;
+            else if (meubles === '3') cost += 450;
+            else if (meubles === '4') cost += 550;
 
-            if (canape === '1') cost += 100;
-            else if (canape === '2') cost += 150;
-            else if (canape === '3') cost += 200;
+            if (canape === '1') cost += 0;
+            else if (canape === '2') cost += 0;
+            else if (canape === '3') cost += 100;
 
-            if (frigo === '1') cost += 150;
-            else if (frigo === '2') cost += 250;
+            if (frigo === '1') cost += 50;
+            else if (frigo === '2') cost += 100;
 
-            if (balcon === 'oui') cost += 100;
-            if (cave === 'oui') cost += 100;
-            if (acces === 'oui') cost += 200;
+            if (balcon === 'oui') cost += cost * 0.1;
+            if (cave === 'oui') cost += cost * 0.1;
+            if (acces === 'oui') cost += cost * 0.2;
 
-            if (ascenseur === 'oui') cost += 39;
-            else if (ascenseur === 'non') cost += 150;
+            if (ascenseur === 'oui') cost += 9;
+            else if (ascenseur === 'non') cost += cost * 0.1;
+
+            if (monte_charge) === 'oui' cost += 700;
+            else if (monte_charge) === 'non' cost += 0;
 
             document.getElementById('prixDevis').innerText = cost; // Affiche le coût dans l'élément prixDevis
             return cost;
