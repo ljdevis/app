@@ -15,6 +15,7 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
+
         .progress {
             height: 8px;
             background-color: #3b82f6;
@@ -22,9 +23,11 @@
             border-radius: 5px;
             transition: width 0.4s ease;
         }
+
         .hidden {
             display: none;
         }
+
         .navigation-button {
             display: inline-block;
             margin: 5px;
@@ -33,15 +36,18 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .next-button {
             background-color: #3b82f6;
             color: white;
         }
+
         .back-button {
             background-color: #a0aec0;
             color: white;
             float: right;
         }
+
         .whatsapp-button {
             position: fixed;
             bottom: 20px;
@@ -55,6 +61,7 @@
             cursor: pointer;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
+
         .video-background {
             position: fixed;
             top: -1.7cm;
@@ -64,11 +71,13 @@
             z-index: -1;
             pointer-events: none;
         }
+
         .video-background iframe {
             width: 120%;
             height: 120%;
             object-fit: cover;
         }
+
         .content-container {
             position: relative;
             z-index: 1;
@@ -86,592 +95,904 @@
     </div>
 
     <div class="content-container">
-    <!-- Ajout des scripts EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init("es5i8pk88qOLfaaBj");
-        })();
-    </script>
+        <!-- Ajout des scripts EmailJS -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script type="text/javascript">
+            (function () {
+                emailjs.init("es5i8pk88qOLfaaBj");
+            })();
+        </script>
 
-    <!-- Page 1 : Bienvenue -->
-    <div id="page1" class="max-w-xl mx-auto mt-10 bg-white bg-opacity-70 shadow-md rounded-lg overflow-hidden">
-        <div class="p-6 text-center">
-            <h1 class="text-2xl font-bold text-blue-600 mb-6">Rapide, Simple et Transparent Avec L&J Déménagement</h1>
-            <p class="text-gray-700 mb-4">Obtenez votre devis en 5 minutes avec notre application unique en Suisse.</p>
-            <p class="text-gray-700 mb-6">Répondez à 22 questions et découvrez votre prix instantanément.</p>
-            <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="showPage('page2')">Lancez votre devis maintenant</button>
-            <p class="text-green-500 mt-4">138 Devis Réalisés la semaine dernière</p>
-        </div>
-    </div>
-
-    <!-- Page 2 : Formulaire de Devis -->
-    <div id="page2" class="max-w-xl mx-auto mt-10 bg-white bg-opacity-80 shadow-md rounded-lg overflow-hidden hidden">
-        <div class="p-6">
-            <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">Votre Déménagement Commence ici</h1>
-            <div class="progress-bar">
-                <div id="progress" class="progress"></div>
+        <!-- Page 1 : Bienvenue -->
+        <div id="page1" class="max-w-xl mx-auto mt-10 bg-white bg-opacity-70 shadow-md rounded-lg overflow-hidden">
+            <div class="p-6 text-center">
+                <h1 class="text-2xl font-bold text-blue-600 mb-6">Rapide, Simple et Transparent Avec L&J Déménagement</h1>
+                <p class="text-gray-700 mb-4">Obtenez LE PRIX de votre devis en 5 minutes avec notre application unique en Suisse.</p>
+                <p class="text-gray-700 mb-6">Répondez à 23 questions et découvrez votre prix instantanément.</p>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="showPage('page2')">Lancez votre devis maintenant</button>
+                <p class="text-green-500 mt-4">138 Devis Réalisés la semaine dernière</p>
             </div>
-            <form id="devisForm" onsubmit="return false;">
-                <!-- Questions du formulaire -->
-                <div class="form-group mb-4" data-question="1">
-                    <label for="nom_prenom" class="block text-gray-700">1. Nom et Prénom :</label>
-                    <input type="text" id="nom_prenom" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre nom et prénom" required>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="2">
-                    <label for="email" class="block text-gray-700">2. E-mail :</label>
-                    <input type="email" id="email" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre email" required>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="3">
-                    <label for="telephone" class="block text-gray-700">3. Numéro de Téléphone :</label>
-                    <input type="tel" id="telephone" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre numéro de téléphone" required>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="4">
-                    <label for="adresse_actuelle" class="block text-gray-700">4. Adresse Actuelle :</label>
-                    <input type="text" id="adresse_actuelle" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre adresse actuelle" required>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="5">
-                    <label for="adresse_future" class="block text-gray-700">5. Adresse Future :</label>
-                    <input type="text" id="adresse_future" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Votre future adresse" required>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="6">
-                    <label for="statut" class="block text-gray-700">6. Statut :</label>
-                    <select id="statut" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="Particulier">Particulier</option>
-                        <option value="Entreprise">Entreprise</option>
-                        <option value="Autre">Autre</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="7">
-                    <label for="formule" class="block text-gray-700">7. Choisissez la formule qui vous correspond pour votre Déménagement :</label>
-                    <select id="formule" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="economique">Formule Économique : (chargement et déchargement, le transport de vos biens de l'adresse actuelle à votre future adresse)</option>
-                        <option value="premium">Formule Premium : (Formule Economique + Montage et Démontage des meubles).</option>
-                        <option value="prestige">Formule Prestige : ( Formule Prémium + Mise en cartons de vos affaires et nettoyage fin de bail de l’appartement sortant)</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="8">
-                    <label for="objet" class="block text-gray-700">8. Styles d'objet :</label>
-                    <select id="objet" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="Appartement">Appartement</option>
-                        <option value="Maison">Maison</option>
-                        <option value="Locaux">Locaux</option>
-                        <option value="Autre">Autre</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="9">
-                    <label for="pieces" class="block text-gray-700">9. Nombre de Pièces :</label>
-                    <select id="pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="studio">Studio</option>
-                        <option value="une_piece">Une pièce</option>
-                        <option value="deux_pieces">Deux pièces</option>
-                        <option value="trois_pieces">Trois pièces</option>
-                        <option value="quatre_pieces">Quatre pièces</option>
-                        <option value="cinq_pieces">Cinq pièces</option>
-                        <option value="six_pieces">Six pièces</option>
-                        <option value="sept_pieces">Sept pièces</option>
-                        <option value="huit_pieces">Huit pièces</option>
-                        <option value="neuf_pieces">Neuf pièces</option>
-                        <option value="dix_pieces">Dix pièces</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="10">
-                    <label for="nettoyage" class="block text-gray-700">10. Nettoyage :</label>
-                    <select id="nettoyage" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="0">Pas de nettoyage</option>
-                        <option value="30_49">30 m² à 49 m²</option>
-                        <option value="50_69">50 m² à 69 m²</option>
-                        <option value="70_89">70 m² à 89 m²</option>
-                        <option value="90_109">90 m² à 109 m²</option>
-                        <option value="110_129">110 m² à 129 m²</option>
-                        <option value="130_149">130 m² à 149 m²</option>
-                        <option value="150_169">150 m² à 169 m²</option>
-                        <option value="170_189">170 m² à 189 m²</option>
-                        <option value="190_209">190 m² à 209 m²</option>
-                        <option value="210_229">210 m² à 229 m²</option>
-                        <option value="230_249">230 m² à 249 m²</option>
-                        <option value="250_269">250 m² à 269 m²</option>
-                        <option value="270_289">270 m² à 289 m²</option>
-                        <option value="290_309">290 m² à 309 m²</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="11">
-                    <label for="distance" class="block text-gray-700">11. Distance :</label>
-                    <select id="distance" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="0_10">0-10 km</option>
-                        <option value="11_30">11-30 km</option>
-                        <option value="31_60">31-60 km</option>
-                        <option value="61_90">61-90 km</option>
-                        <option value="91_120">91-120 km</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="12">
-                    <label for="lit_adulte" class="block text-gray-700">12. Nombre de Lits Adultes :</label>
-                    <select id="lit_adulte" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="13">
-                    <label for="lit_enfant" class="block text-gray-700">13. Nombre de Lits Enfants :</label>
-                    <select id="lit_enfant" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="14">
-                    <label for="meubles" class="block text-gray-700">14. Nombre de Meubles à Démonter et Remonter :</label>
-                    <select id="meubles" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="15">
-                    <label for="canape" class="block text-gray-700">15. Nombre de Canapés :</label>
-                    <select id="canape" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="0">0</option>
-                        <option value="1">Canapé Simple moins de 3 Places</option>
-                        <option value="2">Canapé d'angle</option>
-                        <option value="3">Set de canapés 3+2+1 Places</option>
-                        <option value="4">Autre</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="16">
-                    <label for="frigo" class="block text-gray-700">16. Nombre de Frigos :</label>
-                    <select id="frigo" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="17">
-                    <label for="balcon" class="block text-gray-700">17. Balcon :</label>
-                    <select id="balcon" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="18">
-                    <label for="cave" class="block text-gray-700">18. Cave :</label>
-                    <select id="cave" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="19">
-                    <label for="acces" class="block text-gray-700">19. Accès Facile :</label>
-                    <select id="acces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="20">
-                    <label for="ascenseur" class="block text-gray-700">20. Présence d'un Ascenseur :</label>
-                    <select id="ascenseur" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                        <option value="oui">Rez-de-chaussée</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="21">
-                    <label for="monte_charge" class="block text-gray-700">21. Usage obligatoire d'un Monte-Meuble (Seulement pour les appartements avec des accès difficiles et sans possibilitées d'utiliser les escaliers ou ascenseur) :</label>
-                    <select id="monte_charge" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
-                        <option value="" disabled selected>Choisissez…</option>
-                        <option value="oui">Oui</option>
-                        <option value="non">Non</option>
-                    </select>
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
-                    </div>
-                </div>
-                <div class="form-group mb-4 hidden" data-question="22">
-                    <label for="commentaires" class="block text-gray-700">22. Commentaires Supplémentaires :</label>
-                    <input type="text" id="commentaires" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Toute information supplémentaire">
-                    <div class="flex justify-between">
-                        <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                        <button type="button" class="navigation-button next-button" onclick="validateForm()">Soumettre le devis</button>
-                    </div>
-                </div>
-            </form>
-            <p id="resultat" class="mt-4 text-xl text-center"></p>
-            <div class="error-message text-red-500 hidden" id="error-message">Veuillez remplir tous les champs requis.</div>
-            <div class="confirmation-message text-green-500 hidden" id="confirmation-message">Confirmation de l'envoi</div>
         </div>
-    </div>
 
-    <!-- Page 3 : Résultat du Devis et Remerciements -->
-    <div id="page3" class="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg overflow-hidden hidden">
-        <div class="p-6 text-center">
-            <h1 class="text-2xl font-bold text-blue-600 mb-6">Votre Déménagement Pour Seulement <span id="prixDevis"></span> CHF</h1>
-            <p class="text-gray-700 mb-6">Nous sommes impatients de vous rencontrer et de vous offrir le meilleur service possible.</p>
-            <button class="bg-green-500 text-white py-2 px-4 mb-4 rounded-md hover:bg-green-600" onclick="markContacted()">Être Contacté par un agent de L&J Déménagement</button>
-            <div class="mb-4">
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.wordpress.com/'">Site Web</button>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.wordpress.com/contactez-nous/'">Page de Contact</button>
+        <!-- Page 2 : Formulaire de Devis -->
+        <div id="page2" class="max-w-xl mx-auto mt-10 bg-white bg-opacity-80 shadow-md rounded-lg overflow-hidden hidden">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">Votre Déménagement Commence ici</h1>
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+                <form id="devisForm" onsubmit="return false;">
+                    <!-- Questions du formulaire -->
+                    <div class="form-group mb-4" data-question="1">
+                        <label for="nom_prenom" class="block text-gray-700">1. Nom et Prénom :</label>
+                        <input type="text" id="nom_prenom" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="exemple : Alan Favre" required>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="2">
+                        <label for="email" class="block text-gray-700">2. Adresse Mail :</label>
+                        <input type="email" id="email" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="exemple : alan.favre@exemple.com" required>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="3">
+                        <label for="telephone" class="block text-gray-700">3. Numéro de Téléphone :</label>
+                        <input type="tel" id="telephone" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="exemple : 077 345 34 45" required>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="4">
+                        <label for="adresse_actuelle" class="block text-gray-700">4. Votre Adresse Actuelle & Etage :</label>
+                        <input type="text" id="adresse_actuelle" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="exemple : Av Louis 5, 1400 Yverdon / 2ème étage" required>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="5">
+                        <label for="adresse_future" class="block text-gray-700">5. Adresse de Destination & Etage :</label>
+                        <input type="text" id="adresse_future" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="exemple : Rue du Lac 8, 1003 Lausanne / 3ème étage" required>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="6">
+                        <label for="statut" class="block text-gray-700">6. Votre Statut :</label>
+                        <select id="statut" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="Particulier">Particulier</option>
+                            <option value="Entreprise">Entreprise</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="7">
+                        <label for="formule" class="block text-gray-700">7. Sélection de la Formule :</label>
+                        <select id="formule" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="economique">Formule Économique (Chargement & Déchargement / Transport)</option>
+                            <option value="premium">Formule Premium (Chargement & Déchargement / Transport / Démontage et Remontage des meubles)</option>
+                            <option value="prestige">Formule Prestige (Chargement & Déchargement / Transport / Démontage et Remontage des meubles / Embalage & Débalage / Nettoyage fin de bail)</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="8">
+                        <label for="objet" class="block text-gray-700">8. Type de Logement :</label>
+                        <select id="objet" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required onchange="handleObjetChange()">
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="Appartement">Appartement</option>
+                            <option value="Maison">Maison</option>
+                            <option value="Locaux">Locaux</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                        <div id="sous-options-objet" class="nested-option hidden"></div>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="9">
+                        <label for="pieces" class="block text-gray-700">9. Nombre de Pièces :</label>
+                        <select id="pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required onchange="handlePiecesChange()">
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="studio">Studio</option>
+                            <option value="une_piece">Une pièce</option>
+                            <option value="deux_pieces">Deux pièces</option>
+                            <option value="trois_pieces">Trois pièces</option>
+                            <option value="quatre_pieces">Quatre pièces</option>
+                            <option value="cinq_pieces">Cinq pièces</option>
+                            <option value="six_pieces">Six pièces</option>
+                            <option value="sept_pieces">Sept pièces</option>
+                            <option value="huit_pieces">Huit pièces</option>
+                            <option value="neuf_pieces">Neuf pièces</option>
+                            <option value="dix_pieces">Dix pièces</option>
+                        </select>
+                        <div id="sous-options-pieces" class="nested-option hidden"></div>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="10">
+                        <label for="nettoyage" class="block text-gray-700">10. Service de Nettoyage :</label>
+                        <select id="nettoyage" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="0">Pas de nettoyage</option>
+                            <option value="30_49">30 m² à 49 m²</option>
+                            <option value="50_69">50 m² à 69 m²</option>
+                            <option value="70_89">70 m² à 89 m²</option>
+                            <option value="90_109">90 m² à 109 m²</option>
+                            <option value="110_129">110 m² à 129 m²</option>
+                            <option value="130_149">130 m² à 149 m²</option>
+                            <option value="150_169">150 m² à 169 m²</option>
+                            <option value="170_189">170 m² à 189 m²</option>
+                            <option value="190_209">190 m² à 209 m²</option>
+                            <option value="210_229">210 m² à 229 m²</option>
+                            <option value="230_249">230 m² à 249 m²</option>
+                            <option value="250_269">250 m² à 269 m²</option>
+                            <option value="270_289">270 m² à 289 m²</option>
+                            <option value="290_309">290 m² à 309 m²</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="11">
+                        <label for="distance" class="block text-gray-700">11. Distance du Déménagement :</label>
+                        <select id="distance" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="0_10">0-10 km</option>
+                            <option value="11_30">11-30 km</option>
+                            <option value="31_60">31-60 km</option>
+                            <option value="61_90">61-90 km</option>
+                            <option value="91_120">91-120 km</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="12">
+                        <label for="lit_adulte" class="block text-gray-700">12. Nombre de Lits Adultes (90x200cm à 180x200cm) :</label>
+                        <select id="lit_adulte" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="13">
+                        <label for="lit_enfant" class="block text-gray-700">13. Nombre de Lits Enfants (70x140cm à 90x190cm):</label>
+                        <select id="lit_enfant" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="14">
+                        <label for="meubles" class="block text-gray-700">14. Meubles à Démonter et Remonter :</label>
+                        <select id="meubles" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="15">
+                        <label for="canape" class="block text-gray-700">15. Nombre de Canapés :</label>
+                        <select id="canape" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="0">0</option>
+                            <option value="1">Canapé Simple moins de 3 Places</option>
+                            <option value="2">Canapé d'angle</option>
+                            <option value="3">Set de canapés 3+2+1 Places</option>
+                            <option value="4">Autre</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="16">
+                        <label for="frigo" class="block text-gray-700">16. Nombre de Réfrigérateurs :</label>
+                        <select id="frigo" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="17">
+                        <label for="balcon" class="block text-gray-700">17. Presence d'un Balcon ou Terasse :</label>
+                        <select id="balcon" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="oui">Oui</option>
+                            <option value="non">Non</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="18">
+                        <label for="cave" class="block text-gray-700">18. Présence d'une Cave :</label>
+                        <select id="cave" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="oui">Oui</option>
+                            <option value="non">Non</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="19">
+                        <label for="acces" class="block text-gray-700">19. Conditions d'Accès au Batiment :</label>
+                        <select id="acces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="oui">Facile</option>
+                            <option value="non">Difficile</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="20">
+                        <label for="ascenseur" class="block text-gray-700">20. Ascenseur Disponible dans Le Bâtiment :</label>
+                        <select id="ascenseur" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="oui">Oui</option>
+                            <option value="non">Non</option>
+                            <option value="rez_chausse">Rez-de-chaussée</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="21">
+                        <label for="monte_charge" class="block text-gray-700">21. Monte-Meuble Nécessaire (Seulement en Cas d'Accès Difficile, Couloire Trop Etroit, ect..) :</label>
+                        <select id="monte_charge" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="oui">Oui</option>
+                            <option value="non">Non</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="22">
+                        <label for="cartons" class="block text-gray-700">22. Besoin de Cartons (Livraison a Domicile Offerte) :</label>
+                        <select id="cartons" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" disabled selected>Choisissez…</option>
+                            <option value="formule_m" data-cost="49">Formule M / lot de 10 cartons à 49.-</option>
+                            <option value="formule_l" data-cost="138">Formule L / lot de 30 cartons à 138.-</option>
+                            <option value="formule_xl" data-cost="270">Formule XL / lot de 60 cartons à 270.-</option>
+                        </select>
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="nextQuestion()">Suivant</button>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 hidden" data-question="23">
+                        <label for="commentaires" class="block text-gray-700">23. Commentaires  ou Informations Supplémentaires :</label>
+                        <input type="text" id="commentaires" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Toute information supplémentaire">
+                        <div class="flex justify-between">
+                            <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
+                            <button type="button" class="navigation-button next-button" onclick="validateForm()">Soumettre le devis</button>
+                        </div>
+                    </div>
+                </form>
+                <p id="resultat" class="mt-4 text-xl text-center"></p>
+                <div class="error-message text-red-500 hidden" id="error-message">Veuillez remplir tous les champs requis.</div>
+                <div class="confirmation-message text-green-500 hidden" id="confirmation-message">Confirmation de l'envoi</div>
             </div>
-            <p>Votre avis compte ! <a href="https://g.co/kgs/Cug2Dpz" target="_blank" class="text-blue-500 hover:underline">Laissez un feedback sur Google.</a></p>
         </div>
-    </div>
 
-    <div id="confirmation-message" class="notification hidden"></div>
-    <div id="notification" class="notification hidden"></div>
+        <!-- Page 3 : Résultat du Devis et Remerciements -->
+        <div id="page3" class="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg overflow-hidden hidden">
+            <div class="p-6 text-center">
+                <h1 class="text-2xl font-bold text-blue-600 mb-6">Votre Déménagement Pour Seulement <span id="prixDevis"></span> CHF</h1>
+                <p class="text-gray-700 mb-6">Nous sommes impatients de vous rencontrer et de vous offrir le meilleur service possible.</p>
+                <button class="bg-green-500 text-white py-2 px-4 mb-4 rounded-md hover:bg-green-600" onclick="markContacted()">Être Contacté par un agent de L&J Déménagement</button>
+                <div class="mb-4">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.wordpress.com/'">Site Web</button>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.wordpress.com/contactez-nous/'">Page de Contact</button>
+                </div>
+                <p>Votre avis compte ! <a href="https://g.co/kgs/Cug2Dpz" target="_blank" class="text-blue-500 hover:underline">Laissez un feedback sur Google.</a></p>
+            </div>
+        </div>
 
-    <script>
-        let currentQuestion = 1;
-        const totalQuestions = 22;
+        <div id="confirmation-message" class="notification hidden"></div>
+        <div id="notification" class="notification hidden"></div>
 
-        function showPage(page) {
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.add('hidden');
-            document.getElementById('page3').classList.add('hidden');
-            document.getElementById(page).classList.remove('hidden');
-        }
+        <script>
+            let currentQuestion = 1;
+            const totalQuestions = 23; // Mettez à jour le nombre total de questions
 
-        function nextQuestion() {
-            document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('hidden');
-            currentQuestion++;
-            if (currentQuestion <= totalQuestions) {
-                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('hidden');
+            function showPage(page) {
+                document.getElementById('page1').classList.add('hidden');
+                document.getElementById('page2').classList.add('hidden');
+                document.getElementById('page3').classList.add('hidden');
+                document.getElementById(page).classList.remove('hidden');
             }
-            updateProgressBar();
-        }
 
-        function previousQuestion() {
-            if (currentQuestion > 1) {
+            function nextQuestion() {
                 document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('hidden');
-                currentQuestion--;
-                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('hidden');
-            } else {
-                showPage('page1');
-            }
-            updateProgressBar();
-        }
-
-        function updateProgressBar() {
-            const progress = (currentQuestion / totalQuestions) * 100;
-            document.getElementById('progress').style.width = `${progress}%`;
-        }
-
-        function validateForm() {
-            const email = document.getElementById('email').value;
-            const telephone = document.getElementById('telephone').value;
-
-            if (!email || !telephone) {
-                document.getElementById('error-message').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('error-message').style.display = 'none';
-                }, 3000);
-                return;
+                currentQuestion++;
+                if (currentQuestion <= totalQuestions) {
+                    document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('hidden');
+                }
+                updateProgressBar();
             }
 
-            const cost = calculateCost();
-            saveForm(cost);
-        }
+            function previousQuestion() {
+                if (currentQuestion > 1) {
+                    document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('hidden');
+                    currentQuestion--;
+                    document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('hidden');
+                } else {
+                    showPage('page1');
+                }
+                updateProgressBar();
+            }
 
-        function calculateCost() {
-            let cost = 0;
-            const formule = document.getElementById('formule').value;
-            const pieces = document.getElementById('pieces').value;
-            const nettoyage = document.getElementById('nettoyage').value;
-            const distance = document.getElementById('distance').value;
-            const lit_adulte = document.getElementById('lit_adulte').value;
-            const lit_enfant = document.getElementById('lit_enfant').value;
-            const meubles = document.getElementById('meubles').value;
-            const canape = document.getElementById('canape').value;
-            const frigo = document.getElementById('frigo').value;
-            const balcon = document.getElementById('balcon').value;
-            const cave = document.getElementById('cave').value;
-            const acces = document.getElementById('acces').value;
-            const ascenseur = document.getElementById('ascenseur').value;
-            const monte_charge = document.getElementById('monte_charge').value;
+            function updateProgressBar() {
+                const progress = (currentQuestion / totalQuestions) * 100;
+                document.getElementById('progress').style.width = `${progress}%`;
+            }
 
-            if (formule === 'economique') cost += 0;
-            else if (formule === 'premium') cost += 0;
-            else if (formule === 'prestige') cost += cost * 0.6;
+            function validateForm() {
+                const email = document.getElementById('email').value;
+                const telephone = document.getElementById('telephone').value;
 
-            if (pieces === 'studio') cost += 450;
-            else if (pieces === 'une_piece') cost += 600;
-            else if (pieces === 'deux_pieces') cost += 900;
-            else if (pieces === 'trois_pieces') cost += 1250;
-            else if (pieces === 'quatre_pieces') cost += 1550;
-            else if (pieces === 'cinq_pieces') cost += 1850;
-            else if (pieces === 'six_pieces') cost += 2100;
-            else if (pieces === 'sept_pieces') cost += 2350;
-            else if (pieces === 'huit_pieces') cost += 2600;
-            else if (pieces === 'neuf_pieces') cost += 2850;
-            else if (pieces === 'dix_pieces') cost += 3100;
+                if (!email || !telephone) {
+                    document.getElementById('error-message').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('error-message').style.display = 'none';
+                    }, 3000);
+                    return;
+                }
 
-            if (nettoyage === '30_49') cost += 350;
-            else if (nettoyage === '50_69') cost += 450;
-            else if (nettoyage === '70_89') cost += 600;
-            else if (nettoyage === '90_109') cost += 750;
-            else if (nettoyage === '110_129') cost += 900;
-            else if (nettoyage === '130_149') cost += 1000;
-            else if (nettoyage === '150_169') cost += 1200;
-            else if (nettoyage === '170_189') cost += 1400;
-            else if (nettoyage === '190_209') cost += 1600;
-            else if (nettoyage === '210_229') cost += 1800;
-            else if (nettoyage === '230_249') cost += 2000;
-            else if (nettoyage === '250_269') cost += 2200;
-            else if (nettoyage === '270_289') cost += 2400;
-            else if (nettoyage === '290_309') cost += 2600;
+                const cost = calculateCost();
+                saveForm(cost);
+            }
 
-            if (distance === '0_10') cost += 0;
-            else if (distance === '11_30') cost += 70;
-            else if (distance === '31_60') cost += 90;
-            else if (distance === '61_90') cost += 110;
-            else if (distance === '91_120') cost += 140;
+            function calculateCost() {
+                let cost = 0;
+                const formule = document.getElementById('formule').value;
+                const pieces = document.getElementById('pieces').value;
+                const cartons = document.getElementById('cartons').value;
+                const nettoyage = document.getElementById('nettoyage').value;
+                const distance = document.getElementById('distance').value;
+                const lit_adulte = document.getElementById('lit_adulte').value;
+                const lit_enfant = document.getElementById('lit_enfant').value;
+                const meubles = document.getElementById('meubles').value;
+                const canape = document.getElementById('canape').value;
+                const frigo = document.getElementById('frigo').value;
+                const balcon = document.getElementById('balcon').value;
+                const cave = document.getElementById('cave').value;
+                const acces = document.getElementById('acces').value;
+                const ascenseur = document.getElementById('ascenseur').value;
+                const monte_charge = document.getElementById('monte_charge').value;
 
-            if (lit_adulte === '1') cost += 0;
-            else if (lit_adulte === '2') cost += 100;
-            else if (lit_adulte === '3') cost += 150;
+                // Coût par formule
+                if (formule === 'economique') cost += 0;
+                else if (formule === 'premium') cost += 0; // Coût supplémentaire pour premium
+                else if (formule === 'prestige') cost += cost * 0.9; // Coût supplémentaire pour prestige
 
-            if (lit_enfant === '1') cost += 0;
-            else if (lit_enfant === '2') cost += 50;
-            else if (lit_enfant === '3') cost += 100;
-            else if (lit_enfant === '4') cost += 150;
+                // Coûts en fonction du nombre de pièces
+                switch (pieces) {
+                    case 'studio':
+                        cost += 450;
+                        break;
+                    case 'une_piece':
+                        cost += 600;
+                        break;
+                    case 'deux_pieces':
+                        cost += 900;
+                        break;
+                    case 'trois_pieces':
+                        cost += 1250;
+                        break;
+                    case 'quatre_pieces':
+                        cost += 1550;
+                        break;
+                    case 'cinq_pieces':
+                        cost += 1850;
+                        break;
+                    case 'six_pieces':
+                        cost += 2100;
+                        break;
+                    case 'sept_pieces':
+                        cost += 2350;
+                        break;
+                    case 'huit_pieces':
+                        cost += 2600;
+                        break;
+                    case 'neuf_pieces':
+                        cost += 2850;
+                        break;
+                    case 'dix_pieces':
+                        cost += 3100;
+                        break;
+                }
 
-            if (meubles === '1') cost += 150;
-            else if (meubles === '2') cost += 300;
-            else if (meubles === '3') cost += 450;
-            else if (meubles === '4') cost += 550;
+                // Coût pour le nettoyage
+                switch (nettoyage) {
+                    case '30_49':
+                        cost += 350;
+                        break;
+                    case '50_69':
+                        cost += 450;
+                        break;
+                    case '70_89':
+                        cost += 600;
+                        break;
+                    case '90_109':
+                        cost += 750;
+                        break;
+                    case '110_129':
+                        cost += 900;
+                        break;
+                    case '130_149':
+                        cost += 1050;
+                        break;
+                    case '150_169':
+                        cost += 1200;
+                        break;
+                    case '170_189':
+                        cost += 1500;
+                        break;
+                    case '190_209':
+                        cost += 1800;
+                        break;
+                    case '210_229':
+                        cost += 2100;
+                        break;
+                    case '230_249':
+                        cost += 2400;
+                        break;
+                    case '250_269':
+                        cost += 2700;
+                        break;
+                    case '270_289':
+                        cost += 3000;
+                        break;
+                    case '290_309':
+                        cost += 3300;
+                        break;
+                }
 
-            if (canape === '1') cost += 0;
-            else if (canape === '2') cost += 0;
-            else if (canape === '3') cost += 100;
+                // Coût pour la distance
+                switch (distance) {
+                    case '0_10':
+                        cost += 0;
+                        break;
+                    case '11_30':
+                        cost += 50;
+                        break;
+                    case '31_60':
+                        cost += 80;
+                        break;
+                    case '61_90':
+                        cost += 110;
+                        break;
+                    case '91_120':
+                        cost += 140;
+                        break;
+                }
 
-            if (frigo === '1') cost += 50;
-            else if (frigo === '2') cost += 100;
+                // Coût pour les cartons
+                                if (cartons === "formule_m") cost += 49; // Formule M
+                                else if (cartons === "formule_l") cost += 138; // Formule L
+                                else if (cartons === "formule_xl") cost += 270; // Formule XL
 
-            if (balcon === 'oui') cost += cost * 0.1;
-            if (cave === 'oui') cost += cost * 0.1;
-            if (acces === 'oui') cost += cost * 0.2;
+                                // Coût pour les lits adultes
+                                if (lit_adulte === '1') cost += 0;
+                                else if (lit_adulte === '2') cost += 75;
+                                else if (lit_adulte === '3') cost += 150;
 
-            if (ascenseur === 'oui') cost += 9;
-            else if (ascenseur === 'non') cost += cost * 0.1;
+                                // Coût pour les lits enfants
+                                if (lit_enfant === '1') cost += 0;
+                                else if (lit_enfant === '2') cost += 50;
+                                else if (lit_enfant === '3') cost += 100;
+                                else if (lit_enfant === '4') cost += 150;
 
-            if (monte_charge === 'oui') cost += 700;
-            else if (monte_charge === 'non') cost += 0;
+                                // Coût pour les meubles
+                                if (meubles === '1') cost += 150;
+                                else if (meubles === '2') cost += 300;
+                                else if (meubles === '3') cost += 450;
+                                else if (meubles === '4') cost += 600;
 
-            document.getElementById('prixDevis').innerText = cost; // Affiche le coût dans l'élément prixDevis
-            return cost;
-        }
+                                // Coût pour les canapés
+                                if (canape === '1') cost += 0;
+                                else if (canape === '2') cost += 0; // On peut décider d'ajouter un coût ici si nécessaire
+                                else if (canape === '3') cost += 75;
 
-        function saveForm(cost) {
-            const formDetails = {
-                Nom_prenom: document.getElementById('nom_prenom').value,
-                Email: document.getElementById('email').value,
-                Telephone: document.getElementById('telephone').value,
-                Adresse_actuelle: document.getElementById('adresse_actuelle').value,
-                Adresse_future: document.getElementById('adresse_future').value,
-                Statut: document.getElementById('statut').value,
-                Formule: document.getElementById('formule').value,
-                Objet: document.getElementById('objet').value,
-                Pieces: document.getElementById('pieces').value,
-                Nettoyage: document.getElementById('nettoyage').value,
-                Distance: document.getElementById('distance').value,
-                Lit_adulte: document.getElementById('lit_adulte').value,
-                Lit_enfant: document.getElementById('lit_enfant').value,
-                Meubles: document.getElementById('meubles').value,
-                Canape: document.getElementById('canape').value,
-                Frigo: document.getElementById('frigo').value,
-                Balcon: document.getElementById('balcon').value,
-                Cave: document.getElementById('cave').value,
-                Acces: document.getElementById('acces').value,
-                Ascenseur: document.getElementById('ascenseur').value,
-                Monte_charge: document.getElementById('monte_charge').value,
-                Commentaires: document.getElementById('commentaires').value,
-                Estimated_cost: cost
-            };
+                                // Coût pour les frigos
+                                if (frigo === '1') cost += 50;
+                                else if (frigo === '2') cost += 100;
+                                else if (frigo === '3') cost += 150;
+                                else if (frigo === '4') cost += 200;
 
-            const message = `
-                Nom et Prénom: ${formDetails.Nom_prenom}
-                Email: ${formDetails.Email}
-                Téléphone: ${formDetails.Telephone}
-                Adresse Actuelle: ${formDetails.Adresse_actuelle}
-                Adresse Future: ${formDetails.Adresse_future}
-                Statut: ${formDetails.Statut}
-                Formule: ${formDetails.Formule}
-                Objet: ${formDetails.Objet}
-                Pièces: ${formDetails.Pieces}
-                Nettoyage: ${formDetails.Nettoyage}
-                Distance: ${formDetails.Distance}
-                Lits Adultes: ${formDetails.Lit_adulte}
-                Lits Enfants: ${formDetails.Lit_enfant}
-                Meubles: ${formDetails.Meubles}
-                Canapé: ${formDetails.Canape}
-                Frigo: ${formDetails.Frigo}
-                Balcon: ${formDetails.Balcon}
-                Cave: ${formDetails.Cave}
-                Accès: ${formDetails.Acces}
-                Ascenseur: ${formDetails.Ascenseur}
-                Monte Charge: ${formDetails.Monte_charge}
-                Commentaires: ${formDetails.Commentaires}
-                Coût Estimé: ${formDetails.Estimated_cost} CHF
-            `;
+                                // Coûts supplémentaires
+                                if (balcon === 'oui') cost += cost * 0.1; // 10% supplémentaire si balcon
+                                if (cave === 'oui') cost += cost * 0.1; // 10% supplémentaire si cave
+                                if (acces === 'non') cost += cost * 0.2; // 20% supplémentaire si accès difficile
+                                if (ascenseur === 'non') cost += cost * 0.1; // 10% supplémentaire si pas d'ascenseur
+                                if (monte_charge === 'oui') cost += 700; // Coût fixe si monte-meuble nécessaire
 
-            emailjs.send("service_wd4pvu4", "template_e3f3f4p", {
-                to_email: formDetails.Email,
-                from_name: "L&J Déménagement",
-                reply_to: formDetails.Email,
-                subject: "Demande de devis de L&J Déménagement",
-                message: message
-            }).then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                showConfirmationMessage();
-                showPage('page3');
-            }, (err) => {
-                console.error('FAILED...', err);
-                showNotification("Échec de l'envoi du formulaire.", 'error');
-            });
-        }
+                                // Afficher le coût total dans l'élément prixDevis
+                                document.getElementById('prixDevis').innerText = cost.toFixed(2); // Affiche le coût formaté à deux décimales
+                                return cost;
+                            }
 
-        function showConfirmationMessage() {
-            const confirmationMessage = document.getElementById('confirmation-message');
-            confirmationMessage.style.display = 'block';
-            confirmationMessage.innerText = "Confirmation de l'envoi";
-            setTimeout(() => {
-                confirmationMessage.style.display = 'none';
-            }, 3000);
-        }
+                            function saveForm(cost) {
+                                const formDetails = {
+                                    Nom_prenom: document.getElementById('nom_prenom').value,
+                                    Email: document.getElementById('email').value,
+                                    Telephone: document.getElementById('telephone').value,
+                                    Adresse_actuelle: document.getElementById('adresse_actuelle').value,
+                                    Adresse_future: document.getElementById('adresse_future').value,
+                                    Statut: document.getElementById('statut').value,
+                                    Formule: document.getElementById('formule').value,
+                                    Objet: document.getElementById('objet').value,
+                                    Pieces: document.getElementById('pieces').value,
+                                    Nettoyage: document.getElementById('nettoyage').value,
+                                    Distance: document.getElementById('distance').value,
+                                    Lit_adulte: document.getElementById('lit_adulte').value,
+                                    Lit_enfant: document.getElementById('lit_enfant').value,
+                                    Meubles: document.getElementById('meubles').value,
+                                    Canape: document.getElementById('canape').value,
+                                    Frigo: document.getElementById('frigo').value,
+                                    Balcon: document.getElementById('balcon').value,
+                                    Cave: document.getElementById('cave').value,
+                                    Acces: document.getElementById('acces').value,
+                                    Ascenseur: document.getElementById('ascenseur').value,
+                                    Monte_charge: document.getElementById('monte_charge').value,
+                                    Cartons: document.getElementById('cartons').value,
+                                    Commentaires: document.getElementById('commentaires').value,
+                                    Estimated_cost: cost
+                                };
 
-        function markContacted() {
-            const email = document.getElementById('email').value;
+                                const message = `
+                                    Nom et Prénom: ${formDetails.Nom_prenom}
+                                    Email: ${formDetails.Email}
+                                    Téléphone: ${formDetails.Telephone}
+                                    Adresse Actuelle: ${formDetails.Adresse_actuelle}
+                                    Adresse Future: ${formDetails.Adresse_future}
+                                    Statut: ${formDetails.Statut}
+                                    Formule: ${formDetails.Formule}
+                                    Objet: ${formDetails.Objet}
+                                    Pièces: ${formDetails.Pieces}
+                                    Nettoyage: ${formDetails.Nettoyage}
+                                    Distance: ${formDetails.Distance}
+                                    Lits Adultes: ${formDetails.Lit_adulte}
+                                    Lits Enfants: ${formDetails.Lit_enfant}
+                                    Meubles: ${formDetails.Meubles}
+                                    Canapé: ${formDetails.Canape}
+                                    Frigo: ${formDetails.Frigo}
+                                    Balcon: ${formDetails.Balcon}
+                                    Cave: ${formDetails.Cave}
+                                    Accès: ${formDetails.Acces}
+                                    Ascenseur: ${formDetails.Ascenseur}
+                                    Monte Charge: ${formDetails.Monte_charge}
+                                    Cartons: ${formDetails.Cartons}
+                                    Commentaires: ${formDetails.Commentaires}
+                                    Coût Estimé: ${formDetails.Estimated_cost} CHF
+                                `;
 
-            emailjs.send("service_wd4pvu4", "template_e3f3f4p", {
-                reply_to: email,
-                from_name: "L&J Déménagement",
-                subject: "Demande de contact",
-                message: "Vous serez contacté par un agent de L&J Déménagement."
-            }).then((response) => {
-                console.log('SUCCESS!', response.status, response.text);
-                alert('Votre demande a été envoyée avec succès !');
-            }, (err) => {
-                console.error('FAILED...', err);
-                alert("Échec de l'envoi de la demande.");
-            });
-        }
+                                emailjs.send("service_wd4pvu4", "template_e3f3f4p", {
+                                    to_email: formDetails.Email,
+                                    from_name: "L&J Déménagement",
+                                    reply_to: formDetails.Email,
+                                    subject: "Demande de devis de L&J Déménagement",
+                                    message: message
+                                }).then((response) => {
+                                    console.log('SUCCESS!', response.status, response.text);
+                                    showConfirmationMessage();
+                                    showPage('page3');
+                                }, (err) => {
+                                    console.error('FAILED...', err);
+                                    showNotification("Échec de l'envoi du formulaire.", 'error');
+                                });
+                            }
 
-        function showNotification(message, type) {
-            const notification = document.getElementById('notification');
-            notification.className = `notification ${type}`;
-            notification.innerText = message;
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 3000);
-        }
+                            function showConfirmationMessage() {
+                                const confirmationMessage = document.getElementById('confirmation-message');
+                                confirmationMessage.style.display = 'block';
+                                confirmationMessage.innerText = "Confirmation de l'envoi";
+                                setTimeout(() => {
+                                    confirmationMessage.style.display = 'none';
+                                }, 3000);
+                            }
 
-        // Bouton WhatsApp
-        const whatsappButton = document.createElement('a');
-        whatsappButton.href = "https://api.whatsapp.com/send?phone=41787493594";
-        whatsappButton.target = "_blank";
-        whatsappButton.innerHTML = '<button class="whatsapp-button"><i class="fab fa-whatsapp"></i></button>';
-        document.body.appendChild(whatsappButton);
-    </script>
-</body>
+                            function markContacted() {
+                                const email = document.getElementById('email').value;
 
-</html>
+                                emailjs.send("service_wd4pvu4", "template_e3f3f4p", {
+                                    reply_to: email,
+                                    from_name: "L&J Déménagement",
+                                    subject: "Demande de contact",
+                                    message: "Vous serez contacté par un agent de L&J Déménagement."
+                                }).then((response) => {
+                                    console.log('SUCCESS!', response.status, response.text);
+                                    alert('Votre demande a été envoyée avec succès !');
+                                }, (err) => {
+                                    console.error('FAILED...', err);
+                                    alert("Échec de l'envoi de la demande.");
+                                });
+                            }
+
+                            function showNotification(message, type) {
+                                const notification = document.getElementById('notification');
+                                notification.className = `notification ${type}`;
+                                notification.innerText = message;
+                                notification.style.display = 'block';
+                                setTimeout(() => {
+                                    notification.style.display = 'none';
+                                }, 3000);
+                            }
+
+                            // Gestion des sous-options pour l'objet sélectionné
+                            function handleObjetChange() {
+                                const objet = document.getElementById('objet').value;
+                                const sousOptionsDiv = document.getElementById('sous-options-objet');
+                                sousOptionsDiv.innerHTML = ''; // Réinitialiser les sous-options
+
+                                if (objet === "Appartement") {
+                                    sousOptionsDiv.innerHTML = `
+                                        <label class="block text-gray-700">Combien d'étages ?</label>
+                                        <select id="etages_appartement" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="basique" data-cost="100">Basique (cost += 0)</option>
+                                            <option value="duplex" data-cost="100">Duplex (cost += cost * 0.1;)</option>
+                                            <option value="triplex" data-cost="100">Triplex (cost += cost * 0.2;)</option>
+                                        </select>`;
+                                } else if (objet === "Maison") {
+                                    sousOptionsDiv.innerHTML = `
+                                        <label class="block text-gray-700">Combien d'étages ?</label>
+                                        <select id="etages_maison" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="plein_pied" data-cost="100">Plein pied (cost += 0)</option>
+                                            <option value="deux_etages" data-cost="100">Deux étages (cost += cost * 0.1;)</option>
+                                            <option value="trois_etages" data-cost="100">Trois étages (cost += cost * 0.2;)</option>
+                                        </select>
+                                        <label class="block text-gray-700 mt-2">J'ai un sous-sol</label>
+                                        <input type="checkbox" id="sous_sol" class="mt-1" onclick="updateCostForSousSol()">`;
+                                } else if (objet === "Locaux") {
+                                    sousOptionsDiv.innerHTML = `
+                                        <label class="block text-gray-700">Type de locaux :</label>
+                                        <select id="type_locaux" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" onchange="handleTypeLocauxChange()">
+                                            <option value="halle_industriel">Halle industriel</option>
+                                            <option value="bureau">Bureau</option>
+                                            <option value="usine">Usine</option>
+                                        </select>
+                                        <div id="sous-options-locaux" class="nested-option hidden">
+                                            <label class="block text-gray-700 mt-2">Combien d'étages ?</label>
+                                            <select id="etages_locaux" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                                <option value="un_etage" data-cost="100">Un étage (cost += 0)</option>
+                                                <option value="deux_etages" data-cost="100">Deux étages (cost += cost * 0.1;)</option>
+                                                <option value="trois_etages" data-cost="100">Trois étages (cost += cost * 0.2;)</option>
+                                            </select>
+                                        </div>`;
+                                }
+                                sousOptionsDiv.classList.remove('hidden');
+                            }
+
+                            function handlePiecesChange() {
+                                const pieces = document.getElementById('pieces').value;
+                                const sousOptionsDiv = document.getElementById('sous-options-pieces');
+                                sousOptionsDiv.innerHTML = ''; // Réinitialiser les sous-options
+
+                                const pieceOptions = {
+                                    studio: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_studio" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_49" data-cost="100">Moins de 49m² (cost += 0)</option>
+                                            <option value="50_59" data-cost="100">50m² à 59m² (cost += cost * 0.2;)</option>
+                                            <option value="60_69" data-cost="100">60m² à 69m² (cost += cost * 0.4;)</option>
+                                            <option value="70_80" data-cost="100">70m² à 80m² (cost += cost * 0.6;)</option>
+                                        </select>`,
+                                    une_piece: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_une_piece" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_49" data-cost="100">Moins de 49m² (cost += 0)</option>
+                                            <option value="50_59" data-cost="100">50m² à 59m² (cost += cost * 0.1;)</option>
+                                            <option value="60_69" data-cost="100">60m² à 69m² (cost += cost * 0.2;)</option>
+                                            <option value="70_79" data-cost="100">70m² à 79m² (cost += cost * 0.4;)</option>
+                                            <option value="80_89" data-cost="100">80m² à 89m² (cost += cost * 0.6;)</option>
+                                            <option value="90_99" data-cost="100">90m² à 99m² (cost += cost * 0.8;)</option>
+                                            <option value="100_109" data-cost="100">100m² à 109m² (cost += cost * 1.0;)</option>
+                                            <option value="110_120" data-cost="100">110m² à 120m² (cost += cost * 1.2;)</option>
+                                            <option value="plus_de_121" data-cost="100">Plus de 121m² (cost += cost * 1.4;)</option>
+                                        </select>`,
+                                    deux_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_deux_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_59" data-cost="100">Moins de 59m² (cost += 0)</option>
+                                            <option value="60_69" data-cost="100">60m² à 69m² (cost += 0)</option>
+                                            <option value="70_79" data-cost="100">70m² à 79m² (cost += cost * 0.1;)</option>
+                                            <option value="80_89" data-cost="100">80m² à 89m² (cost += cost * 0.2;)</option>
+                                            <option value="90_99" data-cost="100">90m² à 99m² (cost += cost * 0.4;)</option>
+                                            <option value="100_109" data-cost="100">100m² à 109m² (cost += cost * 0.6;)</option>
+                                            <option value="110_120" data-cost="100">110m² à 120m² (cost += cost * 0.8;)</option>
+                                            <option value="plus_de_121" data-cost="100">Plus de 121m² (cost += cost * 1.0;)</option>
+                                        </select>`,
+                                    trois_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_trois_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_69" data-cost="100">Moins de 69m² (cost += 0)</option>
+                                            <option value="70_79" data-cost="100">70m² à 79m² (cost += 0)</option>
+                                            <option value="80_89" data-cost="100">80m² à 89m² (cost += 0)</option>
+                                            <option value="90_99" data-cost="100">90m² à 99m² (cost += cost * 0.2;)</option>
+                                            <option value="100_109" data-cost="100">100m² à 109m² (cost += cost * 0.4;)</option>
+                                            <option value="110_119" data-cost="100">110m² à 119m² (cost += cost * 0.6;)</option>
+                                            <option value="120_130" data-cost="100">120m² à 130m² (cost += cost * 0.8;)</option>
+                                            <option value="plus_de_131" data-cost="100">Plus de 131m² (cost += cost * 1.0;)</option>
+                                        </select>`,
+                                    quatre_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_quatre_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_89" data-cost="100">Moins de 89m² (cost += 0)</option>
+                                            <option value="90_99" data-cost="100">90m² à 99m² (cost += 100)</option>
+                                            <option value="100_109" data-cost="100">100m² à 109m² (cost += 0)</option>
+                                            <option value="110_119" data-cost="100">110m² à 119m² (cost += cost * 0.2;)</option>
+                                            <option value="120_129" data-cost="100">120m² à 129m² (cost += cost * 0.4;)</option>
+                                            <option value="130_139" data-cost="100">130m² à 139m² (cost += cost * 0.5;)</option>
+                                            <option value="140_149" data-cost="100">140m² à 149m² (cost += cost * 0.6;)</option>
+                                            <option value="150_160" data-cost="100">150m² à 160m² (cost += cost * 0.7;)</option>
+                                            <option value="plus_de_161" data-cost="100">Plus de 161m² (cost += cost * 0.8;)</option>
+                                        </select>`,
+                                    cinq_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_cinq_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_99" data-cost="100">Moins de 99m² (cost += 0)</option>
+                                            <option value="100_109" data-cost="100">100m² à 109m² (cost += 0)</option>
+                                            <option value="110_119" data-cost="100">110m² à 119m² (cost += 0)</option>
+                                            <option value="120_129" data-cost="100">120m² à 129m² (cost += cost * 0.1;)</option>
+                                            <option value="130_139" data-cost="100">130m² à 139m² (cost += cost * 0.2;)</option>
+                                            <option value="140_149" data-cost="100">140m² à 149m² (cost += cost * 0.4;)</option>
+                                            <option value="150_159" data-cost="100">150m² à 159m² (cost += cost * 0.5;)</option>
+                                            <option value="160_169" data-cost="100">160m² à 169m² (cost += cost * 0.6;)</option>
+                                            <option value="170_180" data-cost="100">170m² à 180m² (cost += cost * 0.7;)</option>
+                                            <option value="plus_de_181" data-cost="100">Plus de 181m² (cost += cost * 0.8;)</option>
+                                        </select>`,
+                                    six_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_six_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_119" data-cost="100">Moins de 119m² (cost += 0)</option>
+                                            <option value="120_129" data-cost="100">120m² à 129m² (cost += 0)</option>
+                                            <option value="130_139" data-cost="100">130m² à 139m² (cost += 0)</option>
+                                            <option value="140_149" data-cost="100">140m² à 149m² (cost += cost * 0.1;)</option>
+                                            <option value="150_159" data-cost="100">150m² à 159m² (cost += cost * 0.2;)</option>
+                                            <option value="160_169" data-cost="100">160m² à 169m² (cost += cost * 0.4;)</option>
+                                            <option value="170_179" data-cost="100">170m² à 179m² (cost += cost * 0.5;)</option>
+                                            <option value="180_189" data-cost="100">180m² à 189m² (cost += cost * 0.6;)</option>
+                                            <option value="190_199" data-cost="100">190m² à 199m² (cost += cost * 0.7;)</option>
+                                            <option value="200_209" data-cost="100">200m² à 209m² (cost += cost * 0.8;)</option>
+                                            <option value="plus_de_220" data-cost="100">Plus de 220m² (cost += cost * 0.9;)</option>
+                                        </select>`,
+                                    sept_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_sept_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_139" data-cost="100">Moins de 139m² (cost += 0)</option>
+                                            <option value="140_149" data-cost="100">140m² à 149m² (cost += 0)</option>
+                                            <option value="150_159" data-cost="100">150m² à 159m² (cost += 0)</option>
+                                            <option value="160_169" data-cost="100">160m² à 169m² (cost += cost * 0.1;)</option>
+                                            <option value="170_179" data-cost="100">170m² à 179m² (cost += cost * 0.2;)</option>
+                                            <option value="180_189" data-cost="100">180m² à 189m² (cost += cost * 0.3;)</option>
+                                            <option value="190_199" data-cost="100">190m² à 199m² (cost += cost * 0.4;)</option>
+                                            <option value="200_209" data-cost="100">200m² à 209m² (cost += cost * 0.5;)</option>
+                                            <option value="210_219" data-cost="100">210m² à 219m² (cost += cost * 0.6;)</option>
+                                            <option value="220_229" data-cost="100">220m² à 229m² (cost += cost * 0.7;)</option>
+                                            <option value="230_239" data-cost="100">230m² à 239m² (cost += cost * 0.8;)</option>
+                                            <option value="240_249" data-cost="100">240m² à 249m² (cost += cost * 0.9;)</option>
+                                            <option value="plus_de_250" data-cost="100">Plus de 250m² (cost += cost * 1.0;)</option>
+                                        </select>`,
+                                    huit_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_huit_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_189" data-cost="100">Moins de 189m² (cost += 0)</option>
+                                            <option value="190_199" data-cost="100">190m² à 199m² (cost += 0)</option>
+                                            <option value="200_209" data-cost="100">200m² à 209m² (cost += 0)</option>
+                                            <option value="210_219" data-cost="100">210m² à 219m² (cost += cost * 0.1;)</option>
+                                            <option value="220_229" data-cost="100">220m² à 229m² (cost += cost * 0.2;)</option>
+                                            <option value="230_239" data-cost="100">230m² à 239m² (cost += cost * 0.3;)</option>
+                                            <option value="240_249" data-cost="100">240m² à 249m² (cost += cost * 0.4;)</option>
+                                            <option value="250_259" data-cost="100">250m² à 259m² (cost += cost * 0.5;)</option>
+                                            <option value="260_269" data-cost="100">260m² à 269m² (cost += cost * 0.6;)</option>
+                                            <option value="270_279" data-cost="100">270m² à 279m² (cost += cost * 0.7;)</option>
+                                            <option value="280_289" data-cost="100">280m² à 289m² (cost += cost * 0.8;)</option>
+                                            <option value="290_299" data-cost="100">290m² à 299m² (cost += cost * 0.9;)</option>
+                                            <option value="300_309" data-cost="100">300m² à 309m² (cost += cost * 1.0;)</option>
+                                            <option value="310_319" data-cost="100">310m² à 319m² (cost += cost * 1.1;)</option>
+                                            <option value="320_329" data-cost="100">320m² à 329m² (cost += cost * 1.2;)</option>
+                                            <option value="plus_de_330" data-cost="100">Plus de 330m² (cost += cost * 1.3;)</option>
+                                        </select>`,
+                                    neuf_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_neuf_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_239" data-cost="100">Moins de 239m² (cost += 0)</option>
+                                            <option value="240_249" data-cost="100">240m² à 249m² (cost += 0)</option>
+                                            <option value="250_259" data-cost="100">250m² à 259m² (cost += cost * 0.1;)</option>
+                                            <option value="260_269" data-cost="100">260m² à 269m² (cost += cost * 0.2;)</option>
+                                            <option value="270_279" data-cost="100">270m² à 279m² (cost += cost * 0.3;)</option>
+                                            <option value="280_289" data-cost="100">280m² à 289m² (cost += cost * 0.4;)</option>
+                                            <option value="290_299" data-cost="100">290m² à 299m² (cost += cost * 0.5;)</option>
+                                            <option value="300_309" data-cost="100">300m² à 309m² (cost += cost * 0.6;)</option>
+                                            <option value="310_319" data-cost="100">310m² à 319m² (cost += cost * 0.7;)</option>
+                                            <option value="320_329" data-cost="100">320m² à 329m² (cost += cost * 0.8;)</option>
+                                            <option value="plus_de_330" data-cost="100">Plus de 330m² (cost += cost * 0.9;)</option>
+                                        </select>`,
+                                    dix_pieces: `
+                                        <label class="block text-gray-700">Superficie :</label>
+                                        <select id="superficie_dix_pieces" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="moins_de_239" data-cost="100">Moins de 239m² (cost += 0)</option>
+                                            <option value="240_249" data-cost="100">240m² à 249m² (cost += 0)</option>
+                                            <option value="250_259" data-cost="100">250m² à 259m² (cost += cost * 0.1;)</option>
+                                            <option value="260_269" data-cost="100">260m² à 269m² (cost += cost * 0.2;)</option>
+                                            <option value="270_279" data-cost="100">270m² à 279m² (cost += cost * 0.3;)</option>
+                                            <option value="280_289" data-cost="100">280m² à 289m² (cost += cost * 0.4;)</option>
+                                            <option value="290_299" data-cost="100">290m² à 299m² (cost += cost * 0.5;)</option>
+                                            <option value="300_309" data-cost="100">300m² à 309m² (cost += cost * 0.6;)</option>
+                                            <option value="310_319" data-cost="100">310m² à 319m² (cost += cost * 0.7;)</option>
+                                            <option value="320_329" data-cost="100">320m² à 329m² (cost += cost * 0.8;)</option>
+                                            <option value="plus_de_330" data-cost="100">Plus de 330m² (cost += cost * 0.9;)</option>
+                                        </select>`,
+                                };
+
+                                sousOptionsDiv.innerHTML = pieceOptions[pieces];
+                                sousOptionsDiv.classList.remove('hidden');
+                            }
+
+                            // Bouton WhatsApp
+                            const whatsappButton = document.createElement('a');
+                            whatsappButton.href = "https://api.whatsapp.com/send?phone=41787493594";
+                            whatsappButton.target = "_blank";
+                            whatsappButton.innerHTML = '<button class="whatsapp-button"><i class="fab fa-whatsapp"></i></button>';
+                            document.body.appendChild(whatsappButton);
+                        </script>
+                    </div>
+                </body>
+
+                </html>
+                
