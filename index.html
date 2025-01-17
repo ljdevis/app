@@ -135,8 +135,8 @@
                 <h1 class="text-2xl font-bold text-blue-600 mb-6">Rapide, Simple et Transparent Avec L&J Déménagement</h1>
                 <p class="text-gray-700 mb-4 text-base font-bold">OBTENEZ LE PRIX DE VOTRE DEVIS EN 5 MINUTES AVEC NOTRE APPLICATION UNIQUE EN SUISSE.</p>
                 <p class="text-gray-700 mb-6 text-base font-bold">RÉPONDEZ À 23 QUESTIONS ET DÉCOUVREZ VOTRE PRIX INSTANTANÉMENT.</p>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="showPage('page2')">Lancez votre devis maintenant</button>
-                <p class="text-green-500 mt-4 font-bold">138 Devis Réalisés la semaine dernière</p>
+                <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="showPage('page2')">Démarrer votre devis maintenant</button>
+                <p class="text-green-500 mt-4 font-bold">178 Devis Réalisés la semaine dernière</p>
             </div>
         </div>
 
@@ -368,7 +368,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-4 hidden" data-question="15">
-                        <label for="canape" class="block text-gray-700">15. Nombre de Canapés :</label>
+                        <label for="canape" class="block text-gray-700">15. Type de Canapés :</label>
                         <select id="canape" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                             <option value="" disabled selected>Choisissez…</option>
                             <option value="0">Pas de canapés</option>
@@ -467,7 +467,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-4 hidden" data-question="22">
-                        <label for="cartons" class="block text-gray-700">22. Besoin de Cartons :</label>
+                        <label for="cartons" class="block text-gray-700">22. Besoin de Cartons : (Nous vous livrons les cartons à votre adresse gratuitement)</label>
                         <select id="cartons" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required>
                             <option value="" disabled selected>Choisissez…</option>
                             <option value="non">Non</option>
@@ -485,7 +485,7 @@
                         <input type="text" id="commentaires" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Toute information supplémentaire">
                         <div class="flex justify-between">
                             <button type="button" class="navigation-button back-button" onclick="previousQuestion()">Retour</button>
-                            <button type="button" class="navigation-button next-button" onclick="validateForm()">Soumettre le devis</button>
+                            <button type="button" class="navigation-button next-button" onclick="validateForm()">Connaitre le coût de mon déménagement</button>
                         </div>
                     </div>
                 </form>
@@ -681,7 +681,7 @@
                 // Coût par formule
                 if (formule === 'economique') cost += 0;
                 else if (formule === 'premium') cost += 100; // Coût supplémentaire pour premium
-                else if (formule === 'prestige') cost += 200; // Coût supplémentaire pour prestige
+                else if (formule === 'prestige') cost += cost * 1; // Coût supplémentaire pour prestige
 
                 // Coûts en fonction du nombre de pièces
                 const piecesCost = {
@@ -727,12 +727,12 @@
                 // Coût pour la distance
                 const distanceCosts = {
                     '0_9': 0,
-                    '10_29': 20,
-                    '30_49': 60,
-                    '50_69': 100,
-                    '70_89': 140,
-                    '90_109': 180,
-                    'plus_110': 220
+                    '10_29': 50,
+                    '30_49': 80,
+                    '50_69': 120,
+                    '70_89': 160,
+                    '90_109': 210,
+                    'plus_110': 300
                 };
                 cost += distanceCosts[distance] || 0;
 
@@ -816,10 +816,10 @@
                 cost += frigoCosts[frigo] || 0;
 
                 // Coûts supplémentaires
-                if (balcon === 'balcon') cost += cost * 0.05; // 5% supplémentaire si balcon
-                if (balcon === 'terrasse') cost += cost * 0.10; // 10% supplémentaire si terrasse
-                if (cave === 'oui') cost += cost * 0.05; // 5% supplémentaire si cave
-                if (acces === 'difficile') cost += cost * 0.10; // 10% supplémentaire si accès difficile
+                if (balcon === 'balcon') cost += cost * 0.10; // 10% supplémentaire si balcon
+                if (balcon === 'terrasse') cost += cost * 0.15; // 15% supplémentaire si terrasse
+                if (cave === 'oui') cost += cost * 0.10; // 10% supplémentaire si cave
+                if (acces === 'difficile') cost += cost * 0.20; // 20% supplémentaire si accès difficile
                 if (ascenseur === 'non') cost += cost * 0.10; // 10% supplémentaire si pas d'ascenseur
                 else if (ascenseur === 'une_adresse') cost += cost * 0.05; // 5% si ascenseur à une seule adresse
                 if (monte_charge === 'oui') cost += 700; // Coût fixe si monte-meuble nécessaire
