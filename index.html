@@ -87,6 +87,14 @@
         }
         .notification {
             display: none;
+            font-weight: bold;
+            text-align: center;
+        }
+        .notification.success {
+            color: #28a745;
+        }
+        .notification.error {
+            color: #D32F2F;
         }
         .obligatory-message {
             color: #D32F2F; /* Rouge vif */
@@ -107,6 +115,12 @@
             font-weight: bold;
             font-size: 1.25rem; /* Agrandir le texte du prix final */
         }
+        .original-price {
+            color: red;
+            text-decoration: line-through;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
         .promotion-message {
             color: green;
             font-size: 1.0rem; /* Agrandir le texte de promotion */
@@ -126,6 +140,31 @@
             font-size: 24px;
             color: #3b82f6;
             cursor: pointer;
+        }
+        .promo-input {
+            width: 50%;
+            padding: 5px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background-color: transparent;
+            font-size: 0.9rem;
+            color: #555;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .promo-input::placeholder {
+            color: #bbb;
+        }
+
+        .promo-input:focus {
+            border-color: #007bff;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -268,7 +307,45 @@
                     obligatoryMessage.classList.remove('valid');
                 }
             }
-</script>
+
+            function unlockQuestion(questionNumber, hideOptions = false) {
+                const questionElement = document.querySelector(`[data-question="${questionNumber}"] select`);
+                questionElement.disabled = false;
+                if (hideOptions) {
+                    const optionsDiv = document.getElementById(`question${questionNumber}-options`);
+                    if (optionsDiv) {
+                        optionsDiv.classList.add('hidden');
+                    }
+                }
+            }
+
+            function lockQuestion(questionNumber) {
+                const questionElement = document.querySelector(`[data-question="${questionNumber}"] select`);
+                questionElement.disabled = true;
+            }
+            
+            function handleFormuleChange() {
+                const formule = document.getElementById('formule').value;
+
+                document.getElementById('question10-options').classList.add('hidden');
+                document.getElementById('question14-options').classList.add('hidden');
+
+                if (formule === 'economique') {
+                    document.getElementById('question10-options').classList.remove('hidden');
+                    document.getElementById('question14-options').classList.remove('hidden');
+                    lockQuestion(10);
+                    lockQuestion(14);
+                } else if (formule === 'premium') {
+                    document.getElementById('question10-options').classList.remove('hidden');
+                    lockQuestion(10);
+                    unlockQuestion(14);
+                } else if (formule === 'prestige') {
+                    unlockQuestion(10);
+                    unlockQuestion(14);
+                }
+            }
+
+        </script>
 
         <div id="page1" class="max-w-xl mx-auto mt-10 bg-white bg-opacity-70 shadow-md rounded-lg overflow-hidden">
             <div class="p-6 text-center">
@@ -637,11 +714,24 @@
                 <p class="discounted-price text-2xl mb-4"><span id="discountedPrice"></span> CHF</p>
                 <p id="discount-message" class="promotion-message hidden">Rabais de 10% sur nos offres de janvier !</p>
                 <p class="text-gray-700 mb-6">L&J Déménagement vous remercie pour votre fidélité</p>
+                
+                <!-- Champ de saisie pour le code promo -->
+                <div class="promo-code-section mb-4">
+                    <input type="text" id="promo-code" placeholder="Code Promo" class="promo-input">
+                    <button id="apply-promo" class="hidden bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Appliquer</button>
+                </div>
+        
+                <!-- Message de notification pour le code promo -->
+                <div id="promo-notification" class="notification"></div>
+        
+                <!-- Boutons et liens -->
                 <button class="bg-green-500 text-white py-2 px-4 mb-4 rounded-md hover:bg-green-600" onclick="window.location.href='https://calendly.com/ljdemenagement'">Je souhaite organiser une visioconférence pour valider mon devis</button>
                 <div class="mb-4">
                     <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.com'">Site Web</button>
                     <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" onclick="window.location.href='https://ljdemenagement.com/boutique'">La Boutique L&J Déménagement</button>
                 </div>
+        
+                <!-- Icônes sociales -->
                 <div class="social-icons">
                     <a href="https://www.facebook.com/share/19uEbazn1Q/" target="_blank">
                         <i class="fab fa-facebook-f"></i>
@@ -908,7 +998,7 @@
                     Ascenseur: ${formDetails.Ascenseur}
                     Monte Charge: ${formDetails.Monte_charge}
                     Cartons: ${formDetails.Cartons}
-                    Commentaires: ${formDetails.Commentaires}
+                    Commentaires: ${formDetails.Comments}
                     Coût Estimé: ${formDetails.Estimated_cost} CHF
 
                     Nous vous assurons que notre équipe dévouée mettra tout en œuvre pour rendre votre déménagement aussi fluide et serein que possible. Nous vous offrons un service de qualité, alliant professionnalisme et soin.
@@ -1166,7 +1256,7 @@
                             <option value="250_259" data-cost="20">250m² à 259m²</option>
                             <option value="260_269" data-cost="30">260m² à 269m²</option>
                             <option value="plus_de_270m²" data-cost="40">Plus de 270m²*</option>
-                        </select>`,
+                        </select>`
                 };
 
                 sousOptionsDiv.innerHTML = pieceOptions[pieces];
@@ -1190,42 +1280,80 @@
             whatsappButton.innerHTML = '<button class="whatsapp-button"><i class="fab fa-whatsapp"></i></button>';
             document.body.appendChild(whatsappButton);
 
-            // Fonctionnalité pour verrouiller ou déverrouiller les questions en fonction de la formule sélectionnée
-            function handleFormuleChange() {
-                const formule = document.getElementById('formule').value;
+            // JavaScript pour le code promo
+            document.getElementById("promo-code").addEventListener("input", function() {
+                const promoCode = this.value.trim();
+                const applyButton = document.getElementById("apply-promo");
 
-                document.getElementById('question10-options').classList.add('hidden');
-                document.getElementById('question14-options').classList.add('hidden');
+                // Vérifier si le code contient au moins 2 lettres et 2 chiffres
+                const hasTwoLetters = promoCode.replace(/[^a-zA-Z]/g, "").length >= 2;
+                const hasTwoNumbers = promoCode.replace(/[^0-9]/g, "").length >= 2;
 
-                if (formule === 'economique') {
-                    document.getElementById('question10-options').classList.remove('hidden');
-                    document.getElementById('question14-options').classList.remove('hidden');
-                    lockQuestion(10);
-                    lockQuestion(14);
-                } else if (formule === 'premium') {
-                    document.getElementById('question10-options').classList.remove('hidden');
-                    lockQuestion(10);
-                    unlockQuestion(14);
-                } else if (formule === 'prestige') {
-                    unlockQuestion(10);
-                    unlockQuestion(14);
+                if (hasTwoLetters && hasTwoNumbers) {
+                    applyButton.classList.remove("hidden");
+                } else {
+                    applyButton.classList.add("hidden");
                 }
-            }
+            });
 
-            function lockQuestion(questionNumber) {
-                const questionElement = document.querySelector(`[data-question="${questionNumber}"] select`);
-                questionElement.disabled = true;
-            }
+            document.getElementById("apply-promo").addEventListener("click", function() {
+                const promoCode = document.getElementById("promo-code").value.trim();
+                const discount = 0.10; // 10% de réduction
+                const validPromoCodes = ["joel10", "joanie10"];
+                const originalPriceElement = document.getElementById("originalCost");
+                const discountedPriceElement = document.getElementById("discountedPrice");
+                const promoNotification = document.getElementById("promo-notification");
 
-            function unlockQuestion(questionNumber, hideOptions = false) {
-                const questionElement = document.querySelector(`[data-question="${questionNumber}"] select`);
-                questionElement.disabled = false;
-                const optionsDiv = document.getElementById(`question${questionNumber}-options`);
-                if (optionsDiv && hideOptions) {
-                    optionsDiv.classList.add('hidden');
+                const originalPrice = parseFloat(originalPriceElement.textContent.replace('CHF', ''));
+
+                promoNotification.textContent = "";
+
+                if (validPromoCodes.includes(promoCode)) {
+                    promoNotification.className = "notification success";
+                    promoNotification.textContent = "Code accepté, vous bénéficiez de -10%";
+                    promoNotification.style.display = 'block';
+                    setTimeout(() => {
+                        promoNotification.style.display = 'none';
+                    }, 3000);
+
+                    const discountedPrice = originalPrice * (1 - discount);
+                    
+                    originalPriceElement.classList.add('original-price');
+                    discountedPriceElement.textContent = discountedPrice.toFixed(2) + ' CHF';
+
+                    emailjs.send("service_wd4pvu4", "template_e3f3f4p", {
+                        to_email: document.getElementById('email').value,
+                        from_name: "L&J Déménagement",
+                        reply_to: document.getElementById('email').value,
+                        subject: "Demande de devis de L&J Déménagement avec Code Promo",
+                        message: `Le code promo ${promoCode} a été utilisé pour une réduction de 10%.\n\n
+                                  Nom et Prénom: ${document.getElementById('nom_prenom').value}\n
+                                  Email: ${document.getElementById('email').value}\n
+                                  Téléphone: ${document.getElementById('telephone').value}`
+                    }).then(function(response) {
+                        console.log("Email envoyé avec succès !", response.status, response.text);
+                    }, function(error) {
+                        console.log("Échec de l'envoi de l'email.", error);
+                    });
+                } else {
+                    promoNotification.className = "notification error";
+                    promoNotification.textContent = "Code pas valable";
+                    promoNotification.style.display = 'block';
+                    setTimeout(() => {
+                        promoNotification.style.display = 'none';
+                    }, 3000);
                 }
+            });
+
+            // Initialiser les gestionnaires d'événements
+            function init() {
+                handleFormuleChange();
+                handleObjetChange();
+                handlePiecesChange();
             }
 
+            // Appeler la fonction d'initialisation lorsque le DOM est prêt
+            document.addEventListener('DOMContentLoaded', init);
         </script>
     </div>
 </body>
